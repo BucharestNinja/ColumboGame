@@ -20,5 +20,8 @@ class Deck(models.Model):
     card15 = models.CharField(max_length=50)
     author = models.CharField(max_length=100)
 
+    class Meta:
+        db_table='deck'
+
     def __str__(self):
-        return self.title
+        return self.deckName

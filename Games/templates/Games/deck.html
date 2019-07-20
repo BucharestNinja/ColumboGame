@@ -1,0 +1,37 @@
+{% extends 'Games/base.html' %}
+
+{% load static %}
+
+{% block links %}
+<link href="{% static 'css/pagination.css' %}" rel="stylesheet">
+<style media="screen"></style>
+{% endblock %}
+
+{% block headertitle %}
+デッキ一覧
+{% endblock %}
+
+{% block content %}
+  {% csrf_token %}
+  <table class="table table-striped table-bordered　table-sm">
+    <thead>
+      <tr>
+        <th>デッキ名</th>
+        <th>作成者</th>
+        <th><a href="{% url 'Deck:create' %}" class="btn btn-primary btn-sm">追加</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for Deck in object_list %}
+
+      <tr>
+        <td>{{ Deck.deckName }}</td>
+        <td>{{ Deck.author }}</td>
+        <td><a href="{% url 'Deck:update' Deck.pk %}" class="btn btn-info btn-sm">修正</a></td>
+        <td><form action="{% url 'Deck:delete' Deck.pk %}" method="post">  {% csrf_token %}<button type="submit"class="btn btn-danger btn-sm">削除</button></form></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+ <br/>
+{% endblock %}

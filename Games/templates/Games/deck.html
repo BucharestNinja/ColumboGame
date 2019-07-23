@@ -29,6 +29,7 @@
         <td>{{ Deck.author }}</td>
         <td><a href="{% url 'Deck:update' Deck.pk %}" class="btn btn-info btn-sm">修正</a></td>
         <td><form action="{% url 'Deck:delete' Deck.pk %}" method="post">  {% csrf_token %}<button type="submit"class="btn btn-danger btn-sm">削除</button></form></td>
+
       </tr>
       {% endfor %}
     </tbody>

@@ -22,7 +22,3 @@ class DeckDeleteView(DeleteView):
 class DeckListView(ListView):
     model = Deck
     template_name="Games/deck.html"
-
-class DeckDetailView(DetailView):
-    model = Deck
-    template_name = 'Games/detail.html'

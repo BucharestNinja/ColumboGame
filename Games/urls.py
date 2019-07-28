@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import DeckListView, DeckCreateView, DeckDeleteView, DeckUpdateView, DeckDeleteView, DeckDetailView
+from .views import *
 
 app_name = "Deck"
 urlpatterns = [

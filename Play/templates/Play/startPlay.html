@@ -1,0 +1,17 @@
+{% extends '../Games/base.html' %}
+
+{% load static %}
+
+{% block links %}
+<link href="{% static 'css/pagination.css' %}" rel="stylesheet">
+<style media="screen"></style>
+{% endblock %}
+
+{% block content %}
+<form action="" method="post">
+  {% csrf_token %}
+  <div>
+  <label for="name">プレイ人数:</label>
+  <input type="text" id="memberNo">
+</div>
+{% endblock %}

@@ -1,7 +1,7 @@
-from django.urls import path
-from . import views
+from rest_framework import routers
+from .views import GameInfoViewSet, DeckViewSet
 app_name = "Play"
 
-urlpatterns = [
-    path('', views.member,name="member"),
-]
+router = routers.DefaultRouter()
+router.register(r'GameInfo', GameInfoViewSet)
+router.register(r'Deck', DeckViewSet)

@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from Play.urls import router as blog_router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(('Games.urls','Games'),)),
-    path('Play/', include(('Play.urls','Play'),)),
+    path('Play/', include((blog_router.urls),)),
 ]

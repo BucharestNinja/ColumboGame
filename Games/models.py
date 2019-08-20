@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Deck(models.Model):
-    deckName = models.CharField(max_length=40)
+    deckName = models.CharField(max_length=40, unique=True)
     card1 = models.CharField(max_length=50)
     card2 = models.CharField(max_length=50)
     card3 = models.CharField(max_length=50)
@@ -18,7 +18,7 @@ class Deck(models.Model):
     card13 = models.CharField(max_length=50)
     card14 = models.CharField(max_length=50)
     card15 = models.CharField(max_length=50)
-    author = models.CharField(max_length=100)
+    author = models.CharField(max_length=50
 
     class Meta:
         db_table='deck'

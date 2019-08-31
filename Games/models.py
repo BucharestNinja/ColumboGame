@@ -18,7 +18,7 @@ class Deck(models.Model):
     card13 = models.CharField(max_length=50)
     card14 = models.CharField(max_length=50)
     card15 = models.CharField(max_length=50)
-    author = models.CharField(max_length=50
+    author = models.CharField(max_length=50)
 
     class Meta:
         db_table='deck'

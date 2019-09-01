@@ -15,11 +15,13 @@ export default class Start extends React.Component {
   handleChange (e) {
     this.setState({deckName: e.target.value})
     console.log(this.state.deckName)
+    // TODO 空欄のままボタンを押すと全てのデータを抽出してしまうので後日要修正
   }
 
   render(){
     return(
       <div>
+
       <input className="form-control" type="text" value={this.state.deckName} onChange={this.handleChange} ></input>
       <Button onClick={() =>this.props.getDeck(this.state.deckName)}>デッキ登録</Button>
       </div>

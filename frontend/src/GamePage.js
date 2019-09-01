@@ -7,9 +7,8 @@ import { Button} from 'react-bootstrap';
 export default class Start extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {deckName: ''}
-    this.handleChange = this.handleChange.bind(this)
-    const decks = [];
+    console.log(this.props.playersDeck[0].id)
+
   }
 
   handleChange (e) {
@@ -19,10 +18,12 @@ export default class Start extends React.Component {
 
   render(){
     return(
-      <div>
-      <input className="form-control" type="text" value={this.state.deckName} onChange={this.handleChange} ></input>
-      <Button onClick={() =>this.props.getDeck(this.state.deckName)}>デッキ登録</Button>
-      </div>
-    )
+        <ul>
+          {this.props.playersDeck.map((playerDeck,index) =>
+            {<li key={index}>{playerDeck.deckName}</li>)}}
+        </ul>
+      )
+
+
   }
 }

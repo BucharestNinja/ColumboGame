@@ -4,6 +4,7 @@ import axios from 'axios';
 import { withRouter,Switch, Route, Link, WrapMainContent } from 'react-router-dom'
 import Start from './Start'
 import DecisionPage from './DecisionPage'
+import GamePage from './GamePage'
 
 class App extends Component{
   constructor(){
@@ -23,16 +24,18 @@ class App extends Component{
     .then((results) => {
     // APIからデッキデータを取得
       const deck = results.data;
+      console.log(name);
     // 取得したデッキデータをコピーしてsetstateする
       const deckGroup_copy = this.state.deckGroup.slice();
       deckGroup_copy[this.state.registerNo] = deck
+    // プレイヤーの人数分だけデッキを登録する
       if(this.state.playernum > this.state.registerNo){
       this.setState({
         deckGroup: deckGroup_copy,
         registerNo: this.state.registerNo + 1
       });
-    }else {this.props.history.push('/DecisionPage')}
-
+    // 人数を超えたらゲーム本編に遷移する
+  }else {this.props.history.push('/GamePage')}
       console.log(this.state.deckGroup);
     },
     )
@@ -52,12 +55,10 @@ console.log(this.state.deck);
 console.log(this.state.playernum);
   return (
     <Switch>
-  {/* URLでマッチさせたい要素を書いていく */}
-  {/* component={Home}とかでもOK。今回はWrapMainContentでラッパーしている。詳細後述。 */}
-  {/* exactを入れることで厳密なURL比較が可能に */}
+  // URLでマッチさせたい要素を書いていく
   <Route exact path="/" render={() => <Start getPlayerNum={this.selectPlayerNum}/>} />
   <Route exact path="/DecisionPage"  render={() => <DecisionPage playernum= {this.state.playernum} getDeck= {this.getData}/>} /> />} />
-  {/* URLヒットしないときはNot Found画面を表示する */}
+  <Route exact path="/GamePage" render={() => <GamePage playersDeck={this.state.deckGroup} playernum= {this.state.playernum}/>} />
     </Switch>
 
   );

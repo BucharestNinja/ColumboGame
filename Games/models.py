@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Deck(models.Model):
     deckName = models.CharField(max_length=40, unique=True)
     card1 = models.CharField(max_length=50)

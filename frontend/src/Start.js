@@ -1,7 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import { Router, Route, browserHistory, Link } from 'react-router-dom';
 import { Button} from 'react-bootstrap';
 
 export default class Start extends React.Component {
@@ -20,7 +17,7 @@ export default class Start extends React.Component {
   render() {
     return (
       <div>
-      <input className="form-control" type="number" type="number" min="0" max="9" value={this.state.value} onChange={this.handleChange} ></input>
+      <input className="form-control" type="number"  min="0" max="9" value={this.state.value} onChange={this.handleChange} ></input>
       <Button onClick={() =>this.props.getPlayerNum(this.state.value)}>決定</Button>
       </div>
 

@@ -1,7 +1,7 @@
 import React ,{ Component }from 'react';
 import './App.css';
 import axios from 'axios';
-import { withRouter,Switch, Route, Link, WrapMainContent } from 'react-router-dom'
+import { withRouter,Switch, Route } from 'react-router-dom'
 import Start from './Start'
 import DecisionPage from './DecisionPage'
 import GamePage from './GamePage'
@@ -36,7 +36,7 @@ class App extends Component{
       });
     // 人数を超えたらゲーム本編に遷移する
   }else {this.props.history.push('/GamePage')}
-      console.log(this.state.deckGroup);
+      console.log(this.state.deckGroup[1][0]['id']);
     },
     )
     .catch(err => {
@@ -55,10 +55,9 @@ console.log(this.state.deck);
 console.log(this.state.playernum);
   return (
     <Switch>
-  // URLでマッチさせたい要素を書いていく
   <Route exact path="/" render={() => <Start getPlayerNum={this.selectPlayerNum}/>} />
   <Route exact path="/DecisionPage"  render={() => <DecisionPage playernum= {this.state.playernum} getDeck= {this.getData}/>} /> />} />
-  <Route exact path="/GamePage" render={() => <GamePage playersDeck={this.state.deckGroup} playernum= {this.state.playernum}/>} />
+  <Route exact path="/GamePage" render={() => <GamePage playersDeck={this.state.deckGroup} playerNum= {this.state.playernum}/>} />
     </Switch>
 
   );

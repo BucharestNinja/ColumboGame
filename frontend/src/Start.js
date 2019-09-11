@@ -9,8 +9,8 @@ export default class Start extends React.Component {
 }
 
   handleChange (e) {
+    //　プレイヤー人数を取得する
     this.setState({value: e.target.value})
-    console.log(this.state.value)
 }
 
 

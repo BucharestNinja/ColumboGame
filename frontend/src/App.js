@@ -35,7 +35,7 @@ class App extends Component{
         registerNo: this.state.registerNo + 1
       });
     // 人数を超えたらゲーム本編に遷移する
-  }else {this.props.history.push('/GamePage')}
+  }if(this.state.playernum == this.state.registerNo){this.props.history.push('/GamePage')}
       console.log(this.state.deckGroup[1][0]['id']);
     },
     )
@@ -45,6 +45,7 @@ class App extends Component{
   }
 
   selectPlayerNum = (e) =>{
+    // プレイヤー数をデッキ選択ページヘ渡して遷移する
     this.setState({playernum: e})
     console.log(this.state.playernum);
     this.props.history.push('/DecisionPage')

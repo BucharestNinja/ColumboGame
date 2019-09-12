@@ -28,16 +28,29 @@ export default class GamePage extends React.Component {
     };
   }
 
-  PlayerChange(){
-    const hand_copy = this.state.hand.slice()
-    hand_copy.splice();
-    this.setState({hand:hand_copy})
+  drawCard(){
+    //デッキからカードを引く
+    // 先にシャッフルしておいた番号とcardを組み合わせキーを作り、デッキからカードを取得する
+    this.setState({hand: this.state.hand.concat(this.state.playersDeck[this.state.nowPlayer][0]['card'+this.cardNo[this.state.nowPlayer][this.drawCount]])})
+    console.log(this.state.hand)
+    // カードを引いた回数を記録する
+    this.drawCount = this.drawCount+1
+    console.log(this.cardNo[0])
+  }
 
+  PlayerChange(){
+    // プレイヤーのターンを交代する
+    // 使用済みのカードを配列から削除する
+    this.cardNo[this.state.nowPlayer].splice(0,this.drawCount);
+    console.log(this.cardNo[this.state.nowPlayer])
+    // カードを引いた回数をリセットする
     this.drawCount =0
+    //　まだターンが回ってきていないプレイヤーが居る場合次のプレイヤーに交替する
     if(this.state.nowPlayer < this.props.playerNum-1){
       this.setState({
         nowPlayer : this.state.nowPlayer+1
       });
+    // 一巡した場合最初のプレイヤーにターンを交代する
     }else{
       this.setState({
         nowPlayer : 0
@@ -45,16 +58,10 @@ export default class GamePage extends React.Component {
     }
   }
 
-  drawCard(){
-    this.setState({hand: this.state.hand.concat(this.state.playersDeck[this.state.nowPlayer][0]['card'+this.cardNo[this.state.nowPlayer][this.drawCount]])})
-    console.log(this.state.hand)
-    this.drawCount = this.drawCount+1
-    this.cardNo.splice(0,this.drawCount)
-    console.log(this.cardNo[0])
 
-  }
 
   renderCards(){
+    //　プレイヤーが引いたカードを画面に表示する
     let rows = this.state.hand.map((card,index) =>
   <tr key={card}>
     <td>
@@ -80,7 +87,6 @@ export default class GamePage extends React.Component {
 }
 
   render(){
-    console.log(this.state.nowPlayer)
     return(
       <div>
         <p>{this.renderCards()}</p>

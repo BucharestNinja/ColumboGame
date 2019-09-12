@@ -18,7 +18,6 @@ class App extends Component{
   }
 
   getData = (name) =>{
-   console.log("stateって変わったの？");
    axios
     .get('http://127.0.0.1:8000/Play/Deck',{ params: {deckName: name}})
     .then((results) => {

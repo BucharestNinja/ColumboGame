@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'Play',
     'frontend',
     'corsheaders',
-    'django_filters',
 ]
 
 REST_FRAMEWORK = {

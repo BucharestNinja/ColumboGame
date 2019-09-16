@@ -29,7 +29,7 @@ export default class GamePage extends React.Component {
   }
 
   drawCard(){
-    //デッキからカードを引く
+    //　デッキからカードを引く
     // 先にシャッフルしておいた番号とcardを組み合わせキーを作り、デッキからカードを取得する
     this.setState({hand: this.state.hand.concat(this.state.playersDeck[this.state.nowPlayer][0]['card'+this.cardNo[this.state.nowPlayer][this.drawCount]])})
     console.log(this.state.hand)
@@ -92,7 +92,7 @@ export default class GamePage extends React.Component {
         <p>{this.renderCards()}</p>
         <p>現在のプレイヤー：{this.state.playersDeck[this.state.nowPlayer][0]['deckName']}</p>
         <Button onClick={() =>this.PlayerChange()}>次のプレイヤー</Button>
-        <Button onClick={() =>this.drawCard()}>ドロー</Button>
+        <Button variant="success" onClick={() =>this.drawCard()}>ドロー</Button>
         <p><textarea name="title" rows="10" cols="40">ここにタイトルを記入してください。</textarea></p>
       </div>
       )

@@ -12,9 +12,10 @@ class App extends Component{
       this.getData = this.getData.bind(this);
       this.state = {
         registerNo : 0,
-        deckGroup : []
+        deckGroup :[],
+        sOrF:''
       }
-      console.log(this.state.playerDeck);
+      console.log(this.state.sOrF);
   }
 
   getData = (name) =>{
@@ -23,18 +24,26 @@ class App extends Component{
     .then((results) => {
     // APIからデッキデータを取得
       const deck = results.data;
-      console.log(name);
+      console.log(deck);
     // 取得したデッキデータをコピーしてsetstateする
       const deckGroup_copy = this.state.deckGroup.slice();
       deckGroup_copy[this.state.registerNo] = deck
-    // プレイヤーの人数分だけデッキを登録する
-      if(this.state.playernum > this.state.registerNo){
+    // デッキが取得できた場合、プレイヤーの人数分だけデッキを登録する
+      if(this.state.playernum > this.state.registerNo && deck !== undefined && deck.length !== 0){
       this.setState({
         deckGroup: deckGroup_copy,
-        registerNo: this.state.registerNo + 1
+        registerNo: this.state.registerNo + 1,
+        sOrF: '登録成功'
       });
-    // 人数を超えたらゲーム本編に遷移する
-  }if(this.state.playernum == this.state.registerNo){this.props.history.push('/GamePage')}
+      console.log(this.state.sOrF);
+    }else{
+      this.setState({
+        sOrF: '登録失敗'
+      });
+      console.log(this.state.sOrF);
+    }
+    // 最初に決めたプレイヤー人数を超えたらゲーム本編に遷移する
+if(this.state.playernum == this.state.registerNo){this.props.history.push('/GamePage')}
       console.log(this.state.deckGroup[1][0]['id']);
     },
     )
@@ -56,7 +65,7 @@ console.log(this.state.playernum);
   return (
     <Switch>
   <Route exact path="/" render={() => <Start getPlayerNum={this.selectPlayerNum}/>} />
-  <Route exact path="/DecisionPage"  render={() => <DecisionPage playernum= {this.state.playernum} getDeck= {this.getData}/>} /> />} />
+  <Route exact path="/DecisionPage"  render={() => <DecisionPage playernum= {this.state.playernum} getDeck= {this.getData} isSuccess={this.state.sOrF}/>} /> />} />
   <Route exact path="/GamePage" render={() => <GamePage playersDeck={this.state.deckGroup} playerNum= {this.state.playernum}/>} />
     </Switch>
 

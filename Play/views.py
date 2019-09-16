@@ -1,15 +1,19 @@
+from django_filters import rest_framework as filters
+from rest_framework import viewsets
 
-from rest_framework import viewsets, filters
-
-from .models import Deck, GameInfo
-from .serializer import GameInfoSerializer, DeckSerializer
+from .models import Deck
+from .serializer import DeckSerializer
 # Create your views here.
-class GameInfoViewSet(viewsets.ModelViewSet):
-    queryset = GameInfo.objects.all()
-    serializer_class  = GameInfoSerializer
-    filter_fields = ('author')
+class DeckFilter(filters.FilterSet):
+
+    # フィルタの定義
+    deckName = filters.CharFilter(field_name="deckName", lookup_expr='exact')
+
+    class Meta:
+        model = Deck
+        fields = ['deckName']
 
 class DeckViewSet(viewsets.ModelViewSet):
     queryset = Deck.objects.all()
     serializer_class  = DeckSerializer
-    filter_fields = ('deckName',)
+    filter_class = DeckFilter

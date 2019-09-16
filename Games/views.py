@@ -22,3 +22,4 @@ class DeckDeleteView(DeleteView):
 class DeckListView(ListView):
     model = Deck
     template_name="Games/deck.html"
+    paginate_by = 10

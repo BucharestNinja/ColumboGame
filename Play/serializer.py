@@ -1,11 +1,6 @@
 from rest_framework import serializers
 
-from .models import GameInfo, Deck
-
-class GameInfoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = GameInfo
-        fields = '__all__'
+from .models import Deck
 
 class DeckSerializer(serializers.ModelSerializer):
     class Meta:

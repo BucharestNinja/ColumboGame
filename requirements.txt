@@ -1,0 +1,16 @@
+certifi==2019.6.16
+chardet==3.0.4
+chromedriver==2.24.1
+Django==2.2.2
+django-cors-headers==3.0.2
+django-filter==2.2.0
+djangorestframework==3.9.4
+idna==2.8
+mysqlclient==1.4.2.post1
+optional-django==0.3.0
+pytz==2019.1
+react==4.3.0
+requests==2.22.0
+selenium==3.141.0
+sqlparse==0.3.0
+urllib3==1.25.3

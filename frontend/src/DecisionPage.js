@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 // プレイヤー人数分使用するデッキを登録する
 export default class DecisionPage extends React.Component {

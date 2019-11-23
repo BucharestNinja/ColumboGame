@@ -6,12 +6,12 @@ export default class Start extends React.Component {
     super(props)
     this.state = {value: ''}
     this.handleChange = this.handleChange.bind(this)
-}
+  }
 
   handleChange (e) {
     //　プレイヤー人数を取得する
     this.setState({value: e.target.value})
-}
+  }
 
 
   render() {

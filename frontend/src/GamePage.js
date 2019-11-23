@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 export default class GamePage extends React.Component {
   constructor (props) {
@@ -19,10 +19,10 @@ export default class GamePage extends React.Component {
       let n = this.cardNo[i].length;
       let temp, j;
       while (n) {
-          j = Math.floor(Math.random() * n--);
-          temp = this.cardNo[i][n];
-          this.cardNo[i][n] = this.cardNo[i][j];
-          this.cardNo[i][j] = temp;
+        j = Math.floor(Math.random() * n--);
+        temp = this.cardNo[i][n];
+        this.cardNo[i][n] = this.cardNo[i][j];
+        this.cardNo[i][j] = temp;
       }
       console.log(this.cardNo[i])
     };
@@ -50,7 +50,7 @@ export default class GamePage extends React.Component {
       this.setState({
         nowPlayer : this.state.nowPlayer+1
       });
-    // 一巡した場合最初のプレイヤーにターンを交代する
+      // 一巡した場合最初のプレイヤーにターンを交代する
     }else{
       this.setState({
         nowPlayer : 0
@@ -63,38 +63,38 @@ export default class GamePage extends React.Component {
   renderCards(){
     //　プレイヤーが引いたカードを画面に表示する
     let rows = this.state.hand.map((card,index) =>
-  <tr key={card}>
+    <tr key={card}>
     <td>
-      {index + 1}
+    {index + 1}
     </td>
     <td>{card}</td>
-  </tr>
-);
+    </tr>
+  );
 
   return (
-  <table border='1' cellSpacing='0'>
-     <thead>
-        <tr>
-           <th>Number</th>
-           <th>card</th>
-        </tr>
-     </thead>
-     <tbody>
-       {rows}
-     </tbody>
-  </table>
-)
+    <table border='1' cellSpacing='0'>
+    <thead>
+    <tr>
+    <th>Number</th>
+    <th>card</th>
+    </tr>
+    </thead>
+    <tbody>
+    {rows}
+    </tbody>
+    </table>
+  )
 }
 
-  render(){
-    return(
-      <div>
-        <p>{this.renderCards()}</p>
-        <p>現在のプレイヤー：{this.state.playersDeck[this.state.nowPlayer][0]['deckName']}</p>
-        <Button onClick={() =>this.PlayerChange()}>次のプレイヤー</Button>
-        <Button variant="success" onClick={() =>this.drawCard()}>ドロー</Button>
-        <p><textarea name="title" rows="10" cols="40">ここにタイトルを記入してください。</textarea></p>
-      </div>
-      )
-  }
+render(){
+  return(
+    <div>
+    <p>{this.renderCards()}</p>
+    <p>現在のプレイヤー：{this.state.playersDeck[this.state.nowPlayer][0]['deckName']}</p>
+    <Button onClick={() =>this.PlayerChange()}>次のプレイヤー</Button>
+    <Button variant="success" onClick={() =>this.drawCard()}>ドロー</Button>
+    <p><textarea name="title" rows="10" cols="40">ここにタイトルを記入してください。</textarea></p>
+    </div>
+  )
+}
 }

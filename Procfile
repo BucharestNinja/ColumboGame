@@ -1,1 +1,1 @@
-web: gunicorn <Columbo>.wsgi --log-file -
+web: gunicorn Columbo.wsgi --log-file -

@@ -21,7 +21,7 @@ export default class DecisionPage extends React.Component {
       <div>
       <input className = "form-control" type = "text" value = {this.state.deckName} onChange = {this.setDeckName} ></input>
       // 取得したデッキ名を渡す
-      <Button onClick = {() => this.props.getDeck(this.state.deckName)}>デッキ登録</Button>
+      <Button onClick = {() => this.props.getDeckData(this.state.deckName)}>デッキ登録</Button>
       <p>{this.props.isSuccess}</p>
       </div>
     )

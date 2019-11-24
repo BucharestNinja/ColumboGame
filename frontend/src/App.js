@@ -63,7 +63,7 @@ render(){
   return (
     <Switch>
     <Route exact path= "/" render = {() => <Start getPlayerNum = {this.selectPlayerNum}/>} />
-    <Route exact path= "/DecisionPage"  render={() => <DecisionPage playernum = {this.state.playernum} getDeck = {this.getData} isSuccess = {this.state.sOrF}/>} /> />} />
+    <Route exact path= "/DecisionPage"  render={() => <DecisionPage playernum = {this.state.playernum} getDeckData = {this.getDeckData} isSuccess = {this.state.sOrF}/>} /> />} />
     <Route exact path= "/GamePage" render={() => <GamePage playersDeck = {this.state.deckGroup} playerNum = {this.state.playernum}/>} />
     </Switch>
 

@@ -90,7 +90,7 @@ render(){
     <div>
     <p>{this.renderCards()}</p>
     <p>現在のプレイヤー：{this.state.playersDeck[this.state.nowPlayer][0]['deckName']}</p>
-    <Button onClick={() => this.PlayerChange()}>次のプレイヤー</Button>
+    <Button onClick={() => this.playerChange()}>次のプレイヤー</Button>
     <Button variant="success" onClick={() => this.drawCard()}>ドロー</Button>
     <p><textarea name = "title" rows = "10" cols = "40">ここにタイトルを記入してください。</textarea></p>
     </div>

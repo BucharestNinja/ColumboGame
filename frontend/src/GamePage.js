@@ -4,18 +4,17 @@ import { Button } from 'react-bootstrap';
 export default class GamePage extends React.Component {
   constructor (props) {
     super(props)
-    console.log("props.playersDeck[0]['id'] : ", this.props.playersDeck[1]['deckName'])
-    console.log(this.props.playersDeck[0])
     this.state = {
       nowPlayer : 0,
       playersDeck : this.props.playersDeck,
       hand: []
     }
-    this.cardNo =[];
+    this.cardNo = [];
     this.drawCount = 0;
-    for(let i =0; i<this.props.playerNum; i++){
+
+    for(let i = 0; i < this.props.playerNum; i++){
       //　プレイヤー人数分だけ１～１５までの数字の配列を生成してそれぞれシャッフルする
-      this.cardNo[i]=['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'];
+      this.cardNo[i] = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'];
       let n = this.cardNo[i].length;
       let temp, j;
       while (n) {
@@ -34,21 +33,21 @@ export default class GamePage extends React.Component {
     this.setState({hand: this.state.hand.concat(this.state.playersDeck[this.state.nowPlayer][0]['card'+this.cardNo[this.state.nowPlayer][this.drawCount]])})
     console.log(this.state.hand)
     // カードを引いた回数を記録する
-    this.drawCount = this.drawCount+1
+    this.drawCount = this.drawCount + 1
     console.log(this.cardNo[0])
   }
 
-  PlayerChange(){
+  playerChange(){
     // プレイヤーのターンを交代する
     // 使用済みのカードを配列から削除する
     this.cardNo[this.state.nowPlayer].splice(0,this.drawCount);
     console.log(this.cardNo[this.state.nowPlayer])
     // カードを引いた回数をリセットする
-    this.drawCount =0
+    this.drawCount = 0
     //　まだターンが回ってきていないプレイヤーが居る場合次のプレイヤーに交替する
-    if(this.state.nowPlayer < this.props.playerNum-1){
+    if(this.state.nowPlayer < this.props.playerNum - 1){
       this.setState({
-        nowPlayer : this.state.nowPlayer+1
+        nowPlayer : this.state.nowPlayer + 1
       });
       // 一巡した場合最初のプレイヤーにターンを交代する
     }else{
@@ -62,7 +61,7 @@ export default class GamePage extends React.Component {
 
   renderCards(){
     //　プレイヤーが引いたカードを画面に表示する
-    let rows = this.state.hand.map((card,index) =>
+    let drawncards = this.state.hand.map((card,index) =>
     <tr key={card}>
     <td>
     {index + 1}
@@ -80,7 +79,7 @@ export default class GamePage extends React.Component {
     </tr>
     </thead>
     <tbody>
-    {rows}
+    {drawncards}
     </tbody>
     </table>
   )
@@ -91,9 +90,9 @@ render(){
     <div>
     <p>{this.renderCards()}</p>
     <p>現在のプレイヤー：{this.state.playersDeck[this.state.nowPlayer][0]['deckName']}</p>
-    <Button onClick={() =>this.PlayerChange()}>次のプレイヤー</Button>
-    <Button variant="success" onClick={() =>this.drawCard()}>ドロー</Button>
-    <p><textarea name="title" rows="10" cols="40">ここにタイトルを記入してください。</textarea></p>
+    <Button onClick={() => this.PlayerChange()}>次のプレイヤー</Button>
+    <Button variant="success" onClick={() => this.drawCard()}>ドロー</Button>
+    <p><textarea name = "title" rows = "10" cols = "40">ここにタイトルを記入してください。</textarea></p>
     </div>
   )
 }

@@ -6,11 +6,12 @@ export default class DecisionPage extends React.Component {
   constructor (props) {
     super(props)
     this.state = {deckName: ''}
-    this.handleChange = this.handleChange.bind(this)
+    this.setDeckName = this.setDeckName.bind(this)
   }
 
-  handleChange (e) {
-    this.setState({deckName: e.target.value})
+// ユーザーが入力したデッキ名をsetStateする
+  setDeckName (e) {
+    this.setState({deckName : e.target.value})
     console.log(this.state.deckName)
   }
 
@@ -18,8 +19,9 @@ export default class DecisionPage extends React.Component {
     console.log(this.props.isSuccess)
     return(
       <div>
-      <input className="form-control" type="text" value={this.state.deckName} onChange={this.handleChange} ></input>
-      <Button onClick={() =>this.props.getDeck(this.state.deckName)}>デッキ登録</Button>
+      <input className = "form-control" type = "text" value = {this.state.deckName} onChange = {this.setDeckName} ></input>
+      // 取得したデッキ名を渡す
+      <Button onClick = {() => this.props.getDeck(this.state.deckName)}>デッキ登録</Button>
       <p>{this.props.isSuccess}</p>
       </div>
     )

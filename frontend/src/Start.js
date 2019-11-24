@@ -4,20 +4,20 @@ import {Button} from 'react-bootstrap';
 export default class Start extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {value: ''}
-    this.handleChange = this.handleChange.bind(this)
+    this.state = {value : ''}
+    this.setPlayerNum = this.setPlayerNum.bind(this)
   }
 
-  handleChange (e) {
+  setPlayerNum (e) {
     //　プレイヤー人数を取得する
-    this.setState({value: e.target.value})
+    this.setState({value : e.target.value})
   }
 
 
   render() {
     return (
       <div>
-      <input className="form-control" type="number"  min="0" max="9" value={this.state.value} onChange={this.handleChange} ></input>
+      <input className="form-control" type="number"  min="0" max="9" value={this.state.value} onChange={this.setPlayerNum} ></input>
       <Button bsStyle="primary" onClick={() =>this.props.getPlayerNum(this.state.value)}>決定</Button>
       </div>
 

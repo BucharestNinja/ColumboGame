@@ -30,7 +30,7 @@ export default class GameLogic extends React.Component {
   drawCard(){
     //　デッキからカードを引く
     // 先にシャッフルしておいた番号とcardを組み合わせキーを作り、デッキからカードを取得する
-    this.setState({hand: this.state.hand.concat(this.state.playersDeck[this.state.nowPlayer][0]['card'+this.cardNo[this.state.nowPlayer][this.drawCount]])})
+    this.setState({hand: this.state.hand.concat(this.state.playersDeck[this.state.nowPlayer]['card'+this.cardNo[this.state.nowPlayer][this.drawCount]])})
     console.log(this.state.hand)
     // カードを引いた回数を記録する
     this.drawCount = this.drawCount + 1
@@ -89,7 +89,7 @@ render(){
   return(
     <div>
     <p>{this.renderCards()}</p>
-    <p>現在のプレイヤー：{this.state.playersDeck[this.state.nowPlayer][0]['deckName']}</p>
+    <p>現在のプレイヤー：{this.state.playersDeck[this.state.nowPlayer]['deckName']}</p>
     <Button onClick={() => this.playerChange()}>次のプレイヤー</Button>
     <Button variant="success" onClick={() => this.drawCard()}>ドロー</Button>
     <p><textarea name = "title" rows = "10" cols = "40">ここにタイトルを記入してください。</textarea></p>

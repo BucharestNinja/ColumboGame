@@ -2,9 +2,9 @@ import React ,{ Component }from 'react';
 import './App.css';
 import axios from 'axios';
 import { withRouter,Switch, Route } from 'react-router-dom'
-import Start from './Start'
-import DecisionPage from './DecisionPage'
-import GamePage from './GamePage'
+import DecideNumberOfPlayer from './DecideNumberOfPlayer'
+import SelectDeck from './SelectDeck'
+import GameLogic from './GameLogic'
 
 class App extends Component{
   constructor(){
@@ -12,14 +12,14 @@ class App extends Component{
     this.getDeckData = this.getDeckData.bind(this);
     this.state = {
       registerNo : 0,
-      deckGroup : [],
+      deckGroup : 0,
       successOrFailure : ''
     }
   }
 
   getDeckData = (name) =>{
     axios
-    .get('http://127.0.0.1:8000/Play/Deck',{ params: {deckName: name}})
+    .get('http://127.0.0.1:8000/Play/Deck',{ params : {deckName: name}})
     .then((results) => {
       // APIからデッキデータを取得
       const deck = results.data;
@@ -42,7 +42,7 @@ class App extends Component{
         console.log(this.state.successOrFailure);
       }
       // 最初に決めたプレイヤー人数を超えたらゲーム本編に遷移する
-      if(this.state.playernum == this.state.registerNo){this.props.history.push('/GamePage')}
+      if(this.state.playernum == this.state.registerNo){this.props.history.push('/GameLogic')}
     },
   )
   .catch(err => {
@@ -54,7 +54,7 @@ selectPlayerNum = (e) => {
   // プレイヤー数をデッキ選択ページヘ渡して遷移する
   this.setState({playernum : e})
   console.log(this.state.playernum);
-  this.props.history.push('/DecisionPage')
+  this.props.history.push('/SelectDeck')
 };
 
 render(){
@@ -62,9 +62,9 @@ render(){
   console.log(this.state.playernum);
   return (
     <Switch>
-    <Route exact path= "/" render = {() => <Start getPlayerNum = {this.selectPlayerNum}/>} />
-    <Route exact path= "/DecisionPage"  render={() => <DecisionPage playernum = {this.state.playernum} getDeckData = {this.getDeckData} isSuccess = {this.state.sOrF}/>} /> />} />
-    <Route exact path= "/GamePage" render={() => <GamePage playersDeck = {this.state.deckGroup} playerNum = {this.state.playernum}/>} />
+    <Route exact path= "/" render = {() => <DecideNumberOfPlayer getPlayerNum = {this.selectPlayerNum}/>} />
+    <Route exact path= "/SelectDeck"  render={() => <SelectDeck playernum = {this.state.playernum} getDeckData = {this.getDeckData} isSuccess = {this.state.successOrFailure}/>} /> />} />
+    <Route exact path= "/GameLogic" render={() => <GameLogic playersDeck = {this.state.deckGroup} playerNum = {this.state.playernum}/>} />
     </Switch>
 
   );
